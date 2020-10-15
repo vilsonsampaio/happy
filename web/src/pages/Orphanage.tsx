@@ -42,8 +42,6 @@ export default function Orphanage() {
     });
   }, [params.id]);
 
-  function handleImageClick() {}
-
   if (!orphanage) {
     return <p>Carregando...</p>;
   }
