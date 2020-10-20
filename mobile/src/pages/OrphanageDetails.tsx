@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Image, View, ScrollView, Text, StyleSheet, Dimensions, Linking } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import { RectButton, TouchableOpacity } from 'react-native-gesture-handler';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import { useRoute } from '@react-navigation/native';
@@ -79,6 +79,7 @@ export default function OrphanageDetails() {
       
         <View style={styles.mapContainer}>
           <MapView 
+            provider={PROVIDER_GOOGLE}
             initialRegion={{
               latitude: orphanage.latitude,
               longitude: orphanage.longitude,
