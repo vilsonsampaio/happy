@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Timestamp } from 'typeorm';
 
 @Entity('users')
 export default class User {
@@ -13,4 +13,10 @@ export default class User {
 
   @Column()
   password: string;
+
+  @Column()
+  password_reset_token: string;
+
+  @Column()
+  password_reset_expires: Date;
 }
