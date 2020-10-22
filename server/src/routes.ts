@@ -18,6 +18,7 @@ routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 routes.post('/sign-up', SessionsController.signUp);
 routes.post('/sign-in', SessionsController.signIn);
 routes.post('/forgot-password', SessionsController.forgotPassword);
+routes.put('/reset-password', SessionsController.resetPassword);
 
 routes.get('/auth', authMiddleware, (request, response) => response.status(200).json({ ok: true }));
 

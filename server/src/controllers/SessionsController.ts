@@ -131,4 +131,49 @@ export default {
 
     return response.status(200).send();
   },
+  
+  async resetPassword(request: Request, response: Response) {
+    const { id, token, password } = request.body;
+  
+    const schema = Yup.object().shape({
+      id: Yup.number().required('ID é obrigatório'),
+      token: Yup.string().required('Token é obrigatório'),
+      password: Yup.string().required('Nova senha é obrigatório'),
+    });
+    
+    await schema.validate({ id, token, password }, { 
+      abortEarly: false, 
+    });
+  
+    const usersRepository = getRepository(User);
+  
+  
+    const user = await usersRepository.findOne({ id });
+  
+    if (!user) {
+      return response.status(401).json({ message: 'User not found' });
+    }
+  
+    const isTokenInvalid = (token !== user.password_reset_token);
+  
+    if (isTokenInvalid) {
+      return response.status(401).json({ message: 'Token is invalid' });
+    }
+    
+    const now = new Date();
+    const isTokenExpired = (now >= user.password_reset_expires);
+  
+    if (isTokenExpired) {
+      return response.status(401).json({ message: 'Token is expired' });
+    }
+  
+    const password_hash = await bcrypt.hash(password, 10);
+  
+    await usersRepository.update({ id }, {
+      password: password_hash,
+      password_reset_expires: now,
+    });
+    
+    return response.status(200).send();
+  },
 }
