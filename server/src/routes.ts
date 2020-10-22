@@ -4,7 +4,7 @@ import multer from 'multer';
 import uploadConfig from './config/upload';
 
 import OrphanagesController from './controllers/OrphanagesController';
-import UsersController from './controllers/UsersController';
+import SessionsController from './controllers/SessionsController';
 
 import authMiddleware from './middlewares/auth';
 
@@ -15,8 +15,9 @@ routes.get('/orphanages', OrphanagesController.index);
 routes.get('/orphanages/:id', OrphanagesController.show);
 routes.post('/orphanages', upload.array('images'), OrphanagesController.create);
 
-routes.post('/users', UsersController.create);
-routes.get('/users', UsersController.show);
+routes.post('/sign-up', SessionsController.signUp);
+routes.post('/sign-in', SessionsController.signIn);
+routes.post('/forgot-password', SessionsController.forgotPassword);
 
 routes.get('/auth', authMiddleware, (request, response) => response.status(200).json({ ok: true }));
 
