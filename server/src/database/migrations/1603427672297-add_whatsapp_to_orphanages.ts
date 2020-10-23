@@ -1,6 +1,6 @@
-import {MigrationInterface, QueryRunner, TableColumn} from "typeorm";
+import { MigrationInterface, QueryRunner, TableColumn } from 'typeorm';
 
-export class addWhatsappToOrphanages1603412971113 implements MigrationInterface {
+export class addWhatsappToOrphanages1603427672297 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.addColumn('orphanages', new TableColumn({
       name: 'whatsapp',
