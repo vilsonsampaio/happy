@@ -32,6 +32,30 @@ export default {
     return response.json(orphanageView.render(orphanage));
   },
 
+  async indexPending(request: Request, response: Response) {
+    const orphanagesRepository = getRepository(Orphanage);
+
+    const orphanages = await orphanagesRepository.find({
+      where: { is_pending: true },
+      relations: ['images'],
+    });
+
+    return response.json(orphanageView.renderMany(orphanages));
+  },
+
+  async showPending(request: Request, response: Response) {
+    const { id } = request.params;
+
+    const orphanagesRepository = getRepository(Orphanage);
+
+    const orphanage = await orphanagesRepository.findOneOrFail(id, {
+      where: { is_pending: true },
+      relations: ['images'],
+    });
+
+    return response.json(orphanageView.render(orphanage));
+  },
+
   async create(request: Request, response: Response) {
     const {
       name,
