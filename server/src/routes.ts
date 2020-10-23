@@ -20,6 +20,9 @@ routes.post('/sign-in', SessionsController.signIn);
 routes.post('/forgot-password', SessionsController.forgotPassword);
 routes.put('/reset-password', SessionsController.resetPassword);
 
+// PROTECTED ROUTES
+routes.put('/orphanages/:id', authMiddleware, upload.array('images'), OrphanagesController.update);
+
 routes.get('/auth', authMiddleware, (request, response) => response.status(200).json({ ok: true }));
 
 export default routes;

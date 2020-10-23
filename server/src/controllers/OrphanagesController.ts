@@ -94,4 +94,74 @@ export default {
 
     return response.status(201).json(orphanage);
   },
+
+  async update(request: Request, response: Response) {
+    const id = Number(request.params.id);
+    const {
+      name,
+      latitude,
+      longitude,
+      whatsapp,
+      about,
+      instructions,
+      opening_hours,
+      open_on_weekends,
+    } = request.body;
+
+    const requestImages = request.files as Express.Multer.File[];
+
+    const images = requestImages.map((image) => {
+      return {
+        path: image.filename,
+        orphanage: { id },
+      };
+    });
+
+    const data = {
+      name,
+      latitude,
+      longitude,
+      whatsapp,
+      about,
+      instructions,
+      opening_hours,
+      open_on_weekends: open_on_weekends === "true",
+      is_pending: false,
+    };
+
+    const schema = Yup.object().shape({
+      name: Yup.string().required('Nome é obrigatório'),
+      latitude: Yup.number().required(),
+      longitude: Yup.number().required(),
+      whatsapp: Yup.string().required(),
+      about: Yup.string().required().max(300),
+      instructions: Yup.string().required(),
+      opening_hours: Yup.string().required(),
+      open_on_weekends: Yup.boolean().required(),
+      images: Yup.array(
+        Yup.object().shape({
+          orphanage: Yup.object().required().shape({
+            id: Yup.number().required(),
+          }),
+          path: Yup.string().required(),
+        })
+      ),
+      is_pending: Yup.boolean().required(),
+    });
+
+    await schema.validate({ ...data, images }, {
+      abortEarly: false,
+    });
+
+    const imagesRepository = getRepository(Image);
+
+    await imagesRepository.delete({ orphanage: { id }});
+    await imagesRepository.insert(images);
+    
+    const orphanagesRepository = getRepository(Orphanage);
+
+    await orphanagesRepository.update(id, data);
+
+    return response.status(200).send();
+  },
 };
