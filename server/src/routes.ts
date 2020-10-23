@@ -24,6 +24,8 @@ routes.put('/reset-password', SessionsController.resetPassword);
 routes.put('/orphanages/:id', authMiddleware, upload.array('images'), OrphanagesController.update);
 routes.get('/orphanages-pending/', authMiddleware, OrphanagesController.indexPending);
 routes.get('/orphanages-pending/:id', authMiddleware, OrphanagesController.showPending);
+routes.delete('/orphanages/:id', authMiddleware, OrphanagesController.destroy);
+
 
 routes.get('/auth', authMiddleware, (request, response) => response.status(200).json({ ok: true }));
 

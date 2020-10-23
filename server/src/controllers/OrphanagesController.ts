@@ -179,7 +179,7 @@ export default {
 
     const imagesRepository = getRepository(Image);
 
-    await imagesRepository.delete({ orphanage: { id }});
+    await imagesRepository.delete({ orphanage: { id } });
     await imagesRepository.insert(images);
     
     const orphanagesRepository = getRepository(Orphanage);
@@ -188,4 +188,16 @@ export default {
 
     return response.status(200).send();
   },
+
+  async destroy(request: Request, response: Response) {
+    const id = Number(request.params.id);
+
+    const orphanagesRepository = getRepository(Orphanage);
+    const imagesRepository = getRepository(Image);
+    
+    await orphanagesRepository.delete(id);
+    imagesRepository.delete({ orphanage: { id } });
+  
+    return response.status(200).send();
+  }
 };
