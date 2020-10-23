@@ -3,6 +3,7 @@ import { getRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 import Orphanage from '../models/Orphanage';
+import Image from '../models/Image';
 
 import orphanageView from '../views/orphanages_view';
 
@@ -11,6 +12,7 @@ export default {
     const orphanagesRepository = getRepository(Orphanage);
 
     const orphanages = await orphanagesRepository.find({
+      where: { is_pending: false },
       relations: ['images'],
     });
 
@@ -23,6 +25,7 @@ export default {
     const orphanagesRepository = getRepository(Orphanage);
 
     const orphanage = await orphanagesRepository.findOneOrFail(id, {
+      where: { is_pending: false },
       relations: ['images'],
     });
 
@@ -30,19 +33,16 @@ export default {
   },
 
   async create(request: Request, response: Response) {
-    console.log(request.files);
-
     const {
       name,
       latitude,
       longitude,
+      whatsapp,
       about,
       instructions,
       opening_hours,
       open_on_weekends,
     } = request.body;
-
-    const orphanagesRepository = getRepository(Orphanage);
 
     const requestImages = request.files as Express.Multer.File[];
 
@@ -56,17 +56,20 @@ export default {
       name,
       latitude,
       longitude,
+      whatsapp,
       about,
       instructions,
       opening_hours,
       open_on_weekends: open_on_weekends === "true",
       images,
+      is_pending: true,
     };
 
     const schema = Yup.object().shape({
       name: Yup.string().required('Nome é obrigatório'),
       latitude: Yup.number().required(),
       longitude: Yup.number().required(),
+      whatsapp: Yup.string().required(),
       about: Yup.string().required().max(300),
       instructions: Yup.string().required(),
       opening_hours: Yup.string().required(),
@@ -76,11 +79,14 @@ export default {
           path: Yup.string().required(),
         })
       ),
+      is_pending: Yup.boolean().required(),
     });
 
     await schema.validate(data, {
       abortEarly: false,
     });
+
+    const orphanagesRepository = getRepository(Orphanage);
 
     const orphanage = orphanagesRepository.create(data);
 

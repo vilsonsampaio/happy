@@ -7,9 +7,9 @@ export default {
     return {
       id: orphanage.id,
       name: orphanage.name,
-      whatsapp: orphanage.whatsapp,
       latitude: orphanage.latitude,
       longitude: orphanage.longitude,
+      whatsapp: orphanage.whatsapp,
       about: orphanage.about,
       instructions: orphanage.instructions,
       opening_hours: orphanage.opening_hours,
