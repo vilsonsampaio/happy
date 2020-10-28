@@ -1,12 +1,19 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 
-import 'leaflet/dist/leaflet.css';
-import './styles/global.css';
+import theme from './styles/themes/light';
+import GlobalStyle from './styles/global';
 
 import Routes from './routes';
 
-function App() {
-  return <Routes />;
+const App = () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+
+      <Routes />
+    </ThemeProvider>
+  );
 }
 
 export default App;
