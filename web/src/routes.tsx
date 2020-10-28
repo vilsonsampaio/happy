@@ -6,11 +6,13 @@ import OrphanagesMap from './pages/OrphanagesMap';
 import CreateOrphanage from './pages/CreateOrphanage';
 import Orphanage from './pages/Orphanage';
 
+
 function Routes() {
   return (
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Landing} />
+
         <Route path="/app" component={OrphanagesMap} />
 
         <Route path="/orphanages/create" component={CreateOrphanage} />
