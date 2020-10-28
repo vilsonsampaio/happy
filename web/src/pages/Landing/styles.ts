@@ -98,7 +98,7 @@ export const SignIn = styled(Link)`
     font-size: 2rem;
     line-height: 3rem;
 
-    border-radius: ${theme.radius.medium};
+    border-radius: ${theme.radius.large};
 
     text-decoration: none;
 
@@ -127,7 +127,7 @@ export const EnterApp = styled(Link)`
     background: ${theme.colors.secondary};
     color: ${theme.colors.secondaryDark};
 
-    border-radius: ${theme.radius.default};
+    border-radius: ${theme.radius.large};
 
     transition: ease-in-out 0.3s;
 
@@ -144,55 +144,49 @@ export const EnterApp = styled(Link)`
 `;
 
 export const Responsive = css`
-  ${({ theme }) => css`
-    @media (max-width: 768px) {
-      :root {
-        font-size: 50%;
+  @media (max-width: 768px) {
+    ${Wrapper} {
+      justify-content: space-between;
+
+      background: none;
+    }
+
+    ${LogoWrapper} {
+      width: 100%;
+
+      justify-content: space-between;
+
+      > svg {
+        max-width: 20rem;
+        height: auto;
       }
 
-      ${Wrapper} {
-        justify-content: space-between;
+      > div {
+        margin-left: auto;
 
-        background: none;
-      }
-
-      ${LogoWrapper} {
-        width: 100%;
-
-        justify-content: space-between;
-
-        > svg {
-          max-width: 20rem;
-          height: auto;
-        }
-
-        > div {
-          margin-left: auto;
-
-          text-align: right;
-        }
-      }
-
-      ${SignIn} {
-        position: relative;
-
-        margin-bottom: 4rem;
-      }
-
-      ${Main} {
-        max-width: 90%;
-
-        text-align: center;
-
-        h1 {
-          font-size: 6rem;
-          line-height: 1;
-        }
-
-        p {
-          margin-top: 3rem;
-        }
+        text-align: right;
       }
     }
-  `}
+
+    ${SignIn} {
+      position: relative;
+
+      margin-bottom: 4rem;
+    }
+
+    ${Main} {
+      max-width: 90%;
+
+      text-align: center;
+
+      h1 {
+        font-size: 6rem;
+        line-height: 1;
+      }
+
+      p {
+        margin-top: 3rem;
+      }
+    }
+  }
 `;
