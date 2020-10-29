@@ -3,16 +3,21 @@ export default {
 
   colors: {
     primary: '#15C3D6',
+
     primaryLight: '#12D4E0',
     primaryLighter: '#96FEFF',
     primarySaturated: '#17D6EB',
     primaryLow: '#D1EDF2',
+
+    primaryDark: '#12AFCB',
+
     primaryGradient: 'linear-gradient(329.54deg, #15B6D6 0%, #15D6D6 100%)',
     
     secondary: '#FFD666',
     secondaryDark: '#8D734B',
     
     backgroundDefault: '#EBF2F5',
+    backgroundLineInWhite: '#D3E2E5',
 
     textDefault: '#FFFFFF',
     textTitle: '#0089A5',
@@ -33,6 +38,7 @@ export default {
   radius: {
     default: '2rem',
     small: '1.2rem',
+    medium: '1.6rem',
     large: '3rem',
   }
 } as const;
