@@ -1,7 +1,11 @@
 import { createGlobalStyle, css } from 'styled-components';
 
-// Importando estilo do leaflet
+// Importando estilo do Leaflet
 import 'leaflet/dist/leaflet.css';
+
+// Importando estilo do Toastify
+import 'react-toastify/dist/ReactToastify.min.css'; 
+ 
 
 export default createGlobalStyle`
   ${({ theme }) => css`
@@ -28,6 +32,10 @@ export default createGlobalStyle`
       font: 600 1.8rem 'Nunito', sans-serif;
     }
 
+    img {
+      max-width: 100%;
+    }
+    
     .container {
       width: 90vw;
     }
