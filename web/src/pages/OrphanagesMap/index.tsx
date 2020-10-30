@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { FiArrowRight, FiPlus } from 'react-icons/fi';
 
-import mapIcon from '../../utils/mapIcon';
+import { mapIcon } from '../../utils';
 
 import api from '../../services/api';
 
