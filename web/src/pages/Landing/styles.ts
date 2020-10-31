@@ -14,7 +14,52 @@ export const Container = styled.div`
 
     background: ${theme.colors.primaryGradient};
 
-    ${Responsive};
+
+    @media (max-width: 768px) {
+      ${Wrapper} {
+        justify-content: space-between;
+
+        background: none;
+      }
+
+      ${LogoWrapper} {
+        width: 100%;
+
+        justify-content: space-between;
+
+        > svg {
+          max-width: 20rem;
+          height: auto;
+        }
+
+        > div {
+          margin-left: auto;
+
+          text-align: right;
+        }
+      }
+
+      ${SignIn} {
+        position: relative;
+
+        margin-bottom: 4rem;
+      }
+
+      ${Main} {
+        max-width: 90%;
+
+        text-align: center;
+
+        h1 {
+          font-size: 6rem;
+          line-height: 1;
+        }
+
+        p {
+          margin-top: 3rem;
+        }
+      }
+    }
   `}
 `;
 
@@ -141,52 +186,4 @@ export const EnterApp = styled(Link)`
       color: ${theme.colors.primary};
     }
   `}
-`;
-
-export const Responsive = css`
-  @media (max-width: 768px) {
-    ${Wrapper} {
-      justify-content: space-between;
-
-      background: none;
-    }
-
-    ${LogoWrapper} {
-      width: 100%;
-
-      justify-content: space-between;
-
-      > svg {
-        max-width: 20rem;
-        height: auto;
-      }
-
-      > div {
-        margin-left: auto;
-
-        text-align: right;
-      }
-    }
-
-    ${SignIn} {
-      position: relative;
-
-      margin-bottom: 4rem;
-    }
-
-    ${Main} {
-      max-width: 90%;
-
-      text-align: center;
-
-      h1 {
-        font-size: 6rem;
-        line-height: 1;
-      }
-
-      p {
-        margin-top: 3rem;
-      }
-    }
-  }
 `;
