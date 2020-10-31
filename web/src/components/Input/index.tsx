@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { InputProps } from './Input.d';
 
 import { Container } from './styles';
