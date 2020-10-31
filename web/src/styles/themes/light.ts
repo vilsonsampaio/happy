@@ -43,6 +43,8 @@ export default {
     success: '#37C77F',
     successLight: '#A1E9C5',
     successLighter: '#EDFFF6',
+    successButton: '#31B272',
+    successButtonHover: '#3BD689',
     successGradient: 'linear-gradient(154.16deg, #EDFFF6 7.85%, #FFFFFF 91.03%)',
 
     error: '#FF669D',

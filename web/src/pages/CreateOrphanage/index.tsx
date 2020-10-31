@@ -1,5 +1,6 @@
-import { LeafletMouseEvent } from 'leaflet';
 import React, { ChangeEvent, FormEvent, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { LeafletMouseEvent } from 'leaflet';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 import { FiPlus, FiX } from 'react-icons/fi';
 import { toast } from 'react-toastify';
@@ -26,6 +27,8 @@ import {
 } from './styles';
 
 const CreateOrphanage: React.FC = () => {
+  const history = useHistory();
+
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
   const [name, setName] = useState('');
@@ -113,7 +116,9 @@ const CreateOrphanage: React.FC = () => {
 
         setPreviewImages([]);
 
-        toast.success('Orfanato cadastrado com sucesso!');
+        // toast.success('Orfanato cadastrado com sucesso!');
+
+        history.push('/success');
       })
       .catch((error) => {
         console.error(error);

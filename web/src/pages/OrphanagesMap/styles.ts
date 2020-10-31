@@ -25,7 +25,7 @@ const MapContainer = css`
 
             margin: 0.8rem 1.2rem;
 
-            color: ${theme.colors.textTitle};
+            color: ${theme.colors.textTitleSecondary};
 
             font: 700 2rem 'Nunito';
             line-height: 1;
@@ -113,7 +113,7 @@ export const GoToOrphanageDetail = styled(Link)`
     height: 4rem;
 
     background: ${theme.colors.primary};
-
+    
     border-radius: ${theme.radius.small};
 
     box-shadow: 1.7rem 2.7rem 4.1rem ${theme.colors.shadowPrimaryOpacity};
@@ -158,12 +158,4 @@ export const CreateOrphanage = styled(Link)`
       background: ${theme.colors.primarySaturated};
     }
   `}
-`;
-
-export const Responsive = css`
-  @media (max-width: 768px) {
-    ${Sidebar} {
-      background: red;
-    }
-  }
-`;
+  `;
