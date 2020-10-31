@@ -6,7 +6,8 @@ import OrphanagesMap from './pages/OrphanagesMap';
 import CreateOrphanage from './pages/CreateOrphanage';
 import Orphanage from './pages/Orphanage';
 
-function Routes() {
+
+const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
