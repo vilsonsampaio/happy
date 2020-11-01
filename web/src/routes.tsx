@@ -8,6 +8,8 @@ import Orphanage from './pages/Orphanage';
 
 import Success from './pages/Success';
 
+import SignIn from './pages/SignIn';
+
 
 const Routes = () => {
   return (
@@ -20,6 +22,8 @@ const Routes = () => {
         <Route path="/orphanages/:id" component={Orphanage} />
 
         <Route path="/success" component={Success} />
+
+        <Route path="/sign-in" component={SignIn} />
       </Switch>
     </BrowserRouter>
   );
