@@ -1,11 +1,13 @@
 import styled, { css } from 'styled-components';
 
-interface InputProps {
+interface ContainerProps {
   type: string;
 }
 
-export const Container = styled.div<InputProps>`
+export const Container = styled.div<ContainerProps>`
   ${({ theme, type }) => css`
+    position: relative;
+
     display: flex;
     flex-direction: column;
 
@@ -13,7 +15,7 @@ export const Container = styled.div<InputProps>`
 
     label {
       margin-bottom: 0.8rem;
-      
+
       color: ${theme.colors.textComplementary};
 
       font-size: 1.6rem;
@@ -39,6 +41,40 @@ export const Container = styled.div<InputProps>`
       }
 
       display: ${type === 'file' ? 'none' : 'inline'};
+    }
+  `}
+`;
+
+export const VisibilityButton = styled.button`
+  ${({ theme }) => css`
+    position: absolute;
+    bottom: 50%;
+    right: 2rem;
+
+    transform: translateY(calc(1.5rem + 50%));
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background: none;
+    border: none;
+
+    outline: none;
+
+    cursor: pointer;
+
+    > svg {
+      width: 2rem;
+      height: auto;
+
+      color: ${theme.colors.textComplementary};
+
+      transition: ease-in-out 0.2s;
+
+      :hover {
+        color: ${theme.colors.primary};
+      }
     }
   `}
 `;

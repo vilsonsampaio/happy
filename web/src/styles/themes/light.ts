@@ -55,6 +55,7 @@ export default {
 
   radius: {
     default: '2rem',
+    tiny: '0.8rem',
     small: '1.2rem',
     medium: '1.6rem',
     large: '3rem',
