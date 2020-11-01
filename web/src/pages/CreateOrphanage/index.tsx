@@ -168,6 +168,7 @@ const CreateOrphanage: React.FC = () => {
               label="Nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
 
             <Textarea
@@ -177,6 +178,7 @@ const CreateOrphanage: React.FC = () => {
               maxLength={300}
               value={about}
               onChange={(e) => setAbout(e.target.value)}
+              required
             />
 
             <Input
@@ -184,6 +186,7 @@ const CreateOrphanage: React.FC = () => {
               label="Número de Whatsapp"
               value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)}
+              required
             />
 
             <Input
@@ -193,6 +196,7 @@ const CreateOrphanage: React.FC = () => {
               onChange={handleSelectImages}
               accept="image/jpg, image/jpeg, image/png"
               multiple
+              required
             >
               <ImagesContainer>
                 {previewImages.map((image, index) => {
@@ -225,6 +229,7 @@ const CreateOrphanage: React.FC = () => {
               label="Instruções"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
+              required
             />
 
             <Input
@@ -232,6 +237,7 @@ const CreateOrphanage: React.FC = () => {
               label="Horário das visitas"
               value={opening_hours}
               onChange={(e) => setOpeningHours(e.target.value)}
+              required
             />
 
             <SelectButtonContainer>

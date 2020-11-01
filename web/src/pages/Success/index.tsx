@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { SucccessIllustration } from '../../assets/images';
+import { SuccessIllustration } from '../../assets/images';
 
 import { Container, Wrapper, Content, BackToMap } from './styles';
 
@@ -18,7 +18,7 @@ const Success: React.FC = () => {
           <BackToMap to="/app">Voltar para o mapa</BackToMap>
         </Content>
 
-        <SucccessIllustration />
+        <SuccessIllustration />
       </Wrapper>
     </Container>
   );
