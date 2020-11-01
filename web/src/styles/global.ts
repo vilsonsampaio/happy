@@ -40,6 +40,11 @@ export default createGlobalStyle`
       width: 90vw;
     }
 
+    // Styling the font of react-toastify lib.
+    .Toastify__toast-body {
+      font: 700 1.6rem 'Nunito', sans-serif;
+    }
+
     @media (max-width: 768px) {
       :root {
         font-size: 55%;

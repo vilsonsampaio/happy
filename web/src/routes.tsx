@@ -9,6 +9,8 @@ import Orphanage from './pages/Orphanage';
 import Success from './pages/Success';
 
 import SignIn from './pages/SignIn';
+import ForgotPassword from './pages/ForgotPassword';
+
 
 
 const Routes = () => {
@@ -24,6 +26,7 @@ const Routes = () => {
         <Route path="/success" component={Success} />
 
         <Route path="/sign-in" component={SignIn} />
+        <Route path="/forgot-password" component={ForgotPassword} />
       </Switch>
     </BrowserRouter>
   );
