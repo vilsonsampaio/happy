@@ -116,7 +116,8 @@ const ResetPassword: React.FC = () => {
             disabled={
               !(id && token && password && confirm_password) 
                           ||
-              !(password === confirm_password)}
+              !(password === confirm_password)
+            }
           >
             Redefinir
           </Button>
