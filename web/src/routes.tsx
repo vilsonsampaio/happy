@@ -10,7 +10,7 @@ import Success from './pages/Success';
 
 import SignIn from './pages/SignIn';
 import ForgotPassword from './pages/ForgotPassword';
-
+import ResetPassword from './pages/ResetPassword';
 
 
 const Routes = () => {
@@ -27,6 +27,7 @@ const Routes = () => {
 
         <Route path="/sign-in" component={SignIn} />
         <Route path="/forgot-password" component={ForgotPassword} />
+        <Route path="/reset-password" component={ResetPassword} />
       </Switch>
     </BrowserRouter>
   );

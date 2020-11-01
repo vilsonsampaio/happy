@@ -39,7 +39,6 @@ const ForgotPassword: React.FC = () => {
 
           toast.error(error.response.data.message);
         }
-
       })
     ;
   }
@@ -66,7 +65,7 @@ const ForgotPassword: React.FC = () => {
             required
           />
 
-          <Button type="submit" disabled={!email}>Entrar</Button>
+          <Button type="submit" disabled={!email}>Enviar e-mail</Button>
         </form>
       </FormContainer>
     </Container>
