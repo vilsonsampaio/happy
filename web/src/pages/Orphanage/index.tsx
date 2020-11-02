@@ -79,7 +79,7 @@ const Orphanage: React.FC = () => {
       <Sidebar />
 
       <Main>
-        <PageHeader title="Orfanato" />
+        <PageHeader title={orphanage.name} />
 
         <OrphanageDetail>
           <img src={orphanage.images[activeImage].url} alt={orphanage.name} />

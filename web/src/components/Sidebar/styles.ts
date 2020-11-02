@@ -55,5 +55,19 @@ export const Container = styled.aside`
         }
       }
     }
+
+    @media (max-width: 900px) {
+      flex-direction: row;
+      
+      width: 100vw;
+      height: 9.6rem;
+      
+      max-width: initial;
+
+      border-right: none;
+      border-bottom: solid 0.1rem ${theme.colors.backgroundLineInWhite};
+
+      z-index: 9999;
+    }
   `}
 `;
