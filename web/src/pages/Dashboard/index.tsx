@@ -222,7 +222,7 @@ const Dashboard: React.FC = () => {
                               </CardButton>
 
                               <CardButton 
-                                to={`/orphanages/delete/${orphanage.id}`}
+                                to={`/orphanages/delete/${orphanage.id}/?name=${orphanage.name}`}
                               >
                                 <FiTrash />
                               </CardButton>
