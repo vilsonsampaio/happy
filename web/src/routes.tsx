@@ -14,6 +14,7 @@ import ResetPassword from './pages/ResetPassword';
 
 import Dashboard from './pages/Dashboard';
 import EditOrphanage from './pages/EditOrphanage';
+import DeleteOrphanage from './pages/DeleteOrphanage';
 
 
 const Routes = () => {
@@ -34,6 +35,7 @@ const Routes = () => {
 
         <Route path="/dashboard" exact component={Dashboard} />
         <Route path="/orphanages/edit/:id/" exact component={EditOrphanage} />
+        <Route path="/orphanages/delete/:id/" exact component={DeleteOrphanage} />
       </Switch>
     </BrowserRouter>
   );
