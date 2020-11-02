@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { FiAlertCircle, FiArrowRight, FiEdit3, FiMapPin, FiPower, FiTrash } from 'react-icons/fi';
 import { Map, Marker, TileLayer } from 'react-leaflet';
 
-import { mapIcon } from '../../utils';
-
 import { MapMarker, AlertCircleNotification, NoOrphanagesIcon } from '../../assets/images';
 
-import { Container, Siderbar, SidebarButton, Main, MainWrapper, Cards, Card, CardButton, NoOrphanages } from './styles';
+import { mapIcon } from '../../utils';
+
 import api from '../../services/api';
+
+import { Container, Siderbar, SidebarButton, Main, MainWrapper, Cards, Card, CardButton, NoOrphanages } from './styles';
 
 interface Orphanage {
   id: number;
@@ -28,7 +29,7 @@ const Dashboard: React.FC = () => {
   const [pendingOrphanages, setPendingOrphanages] = useState<Orphanage[]>([]);
   const [approvedOrphanages, setApprovedOrphanages] = useState<Orphanage[]>([]);
 
-  // Initialing
+  // Initialing arrays
   useEffect(() => {
     // Getting approved orphanages
     api
@@ -214,17 +215,23 @@ const Dashboard: React.FC = () => {
                         {currentPage === 'approved'
                           ? (
                             <div>
-                              <CardButton to="">
+                              <CardButton 
+                                to={`/orphanages/edit/${orphanage.id}/?status=approved`}
+                              >
                                 <FiEdit3 />
                               </CardButton>
 
-                              <CardButton to="">
+                              <CardButton 
+                                to={`/orphanages/delete/${orphanage.id}`}
+                              >
                                 <FiTrash />
                               </CardButton>
                             </div>
                           )
                           : (
-                            <CardButton to="">
+                            <CardButton 
+                              to={`/orphanages/edit/${orphanage.id}/?status=pending`}
+                            >
                               <FiArrowRight />
                             </CardButton>
                           )

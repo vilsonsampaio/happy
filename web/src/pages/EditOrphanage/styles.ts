@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 
+import { Container as Button } from '../../components/Button/styles';
 import { Container as Input } from '../../components/Input/styles';
 import { Container as Textarea } from '../../components/Textarea/styles';
 
@@ -7,12 +8,24 @@ interface SelectButtonProps {
   isOpen: boolean;
 }
 
-export const Container = styled.div`
-  ${({ theme }) => css`
+interface PendingProps {
+  isPending: boolean;
+}
+
+export const Container = styled.div<PendingProps>`
+  ${({ theme, isPending }) => css`
     display: flex;
 
     max-width: 100vw;
     min-height: 100vh;
+
+    ${Form} {
+      padding: ${isPending ? '6.4rem 0 0' : '6.4rem 8rem 8rem'};
+    }
+
+    ${Fieldset} {
+      padding: ${isPending ? '0 8rem' : ''};
+    }
 
     @media (max-width: 900px) {
       ${Main} {
@@ -21,7 +34,15 @@ export const Container = styled.div`
       }
 
       ${Form} {
-        padding: 6rem 4rem;
+        padding: ${isPending ? '6rem 0 0' : '6rem 4rem'};
+      }
+
+      ${Fieldset} {
+        padding: ${isPending ? '0 4rem' : '0'};
+      }
+
+      ${PendingButtonContainer} {
+        padding: 4rem;
       }
     }
 
@@ -32,6 +53,10 @@ export const Container = styled.div`
 
       ${SelectButton} {
         font-size: 1.6rem;
+      }
+
+      ${PendingButtonContainer} {
+        grid-template-columns: 1fr;
       }
     }
   `}
@@ -57,8 +82,6 @@ export const Form = styled.form`
     max-width: 70rem;
 
     background: ${theme.colors.shapesPrimary};
-
-    padding: 6.4rem 8rem 8rem;
 
     border: solid 0.1rem ${theme.colors.backgroundLineInWhite};
     border-radius: ${theme.radius.default};
@@ -184,7 +207,7 @@ export const ImagesContainer = styled.div`
         border-bottom-left-radius: ${theme.radius.default};
 
         outline: none;
-        
+
         cursor: pointer;
 
         z-index: 10;
@@ -269,13 +292,11 @@ export const SelectButton = styled.button<SelectButtonProps>`
 
       border: ${isOpen
         ? `solid 0.1rem ${theme.colors.successLight}`
-        : `solid 0.1rem ${theme.colors.backgroundLineInWhite}`
-      };
+        : `solid 0.1rem ${theme.colors.backgroundLineInWhite}`};
 
       border-right: ${isOpen
         ? `solid 0.1rem ${theme.colors.successLight}`
-        : 'none'
-      };
+        : 'none'};
 
       border-top-left-radius: ${theme.radius.default};
       border-bottom-left-radius: ${theme.radius.default};
@@ -287,16 +308,49 @@ export const SelectButton = styled.button<SelectButtonProps>`
 
       border: ${!isOpen
         ? `solid 0.1rem ${theme.colors.successLight}`
-        : `solid 0.1rem ${theme.colors.backgroundLineInWhite}`
-      };
+        : `solid 0.1rem ${theme.colors.backgroundLineInWhite}`};
 
       border-left: ${!isOpen
         ? `solid 0.1rem ${theme.colors.successLight}`
-        : 'none'
-      };
+        : 'none'};
 
       border-top-right-radius: ${theme.radius.default};
       border-bottom-right-radius: ${theme.radius.default};
+    }
+  `}
+`;
+
+export const PendingButtonContainer = styled.footer`
+  ${({ theme }) => css`
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+
+    padding: 4.8rem 8rem;
+
+    background: ${theme.colors.inputs};
+
+    border-top: solid 0.1rem ${theme.colors.backgroundLineInWhite};
+  `}
+`;
+
+export const PendingButton = styled(Button)`
+  ${({ theme }) => css`
+    &:nth-child(1) {
+      background: ${theme.colors.error};
+
+      :hover {
+        background: ${theme.colors.error}dd;
+      }
+    }
+
+    > svg {
+      margin-right: 1rem;
+
+      width: 2.4rem;
+      height: auto;
+
+      color: ${theme.colors.textInButton};
     }
   `}
 `;

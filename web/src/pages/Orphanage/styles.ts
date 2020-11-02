@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { Container as Sidebar } from '../../components/Sidebar/styles';
-
 interface ImageButtonProps {
   isActive: boolean;
 }
@@ -18,12 +16,9 @@ export const Container = styled.div`
     min-height: 100vh;
 
     @media (max-width: 900px) {
-      ${Sidebar} {
-        display: none;
-      }
-
       ${Main} {
         margin-left: 0;
+        margin-top: 9.6rem;
       }
 
       ${OrphanageDetailContent} {
