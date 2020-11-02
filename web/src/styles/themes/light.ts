@@ -50,6 +50,8 @@ export default {
     error: '#FF669D',
     errorLight: '#FFBCD4',
     errorLighter: '#FFE4EE',
+    errorButton: '#D6487B',
+    errorButtonHover: '#D6487Bbb',
     errorGradient: 'linear-gradient(154.16deg, #FCF0F4 7.85%, #FFFFFF 91.03%)',
   },
 

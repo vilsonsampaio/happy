@@ -7,3 +7,5 @@ export { ReactComponent as HappyVertical } from './logo-vertical.svg';
 export { ReactComponent as Checked } from './checked.svg';
 export { ReactComponent as AlertCircleNotification } from './alert-circle-notification.svg';
 export { ReactComponent as NoOrphanagesIcon } from './no-orphanages.svg';
+export { ReactComponent as DeleteIllustration } from './delete.svg';
+
