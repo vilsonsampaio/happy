@@ -13,6 +13,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
 import Dashboard from './pages/Dashboard';
+import EditOrphanage from './pages/EditOrphanage';
 
 
 const Routes = () => {
@@ -20,18 +21,19 @@ const Routes = () => {
     <BrowserRouter>
       <Switch>
         <Route path="/" exact component={Landing} />
-        <Route path="/app" component={OrphanagesMap} />
+        <Route path="/app" exact component={OrphanagesMap} />
 
-        <Route path="/orphanages/create" component={CreateOrphanage} />
-        <Route path="/orphanages/:id" component={Orphanage} />
+        <Route path="/orphanages/create" exact component={CreateOrphanage} />
+        <Route path="/orphanages/:id" exact component={Orphanage} />
 
-        <Route path="/success" component={Success} />
+        <Route path="/success" exact component={Success} />
 
-        <Route path="/sign-in" component={SignIn} />
-        <Route path="/forgot-password" component={ForgotPassword} />
-        <Route path="/reset-password" component={ResetPassword} />
+        <Route path="/sign-in" exact component={SignIn} />
+        <Route path="/forgot-password" exact component={ForgotPassword} />
+        <Route path="/reset-password" exact component={ResetPassword} />
 
-        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/orphanages/edit/:id/" exact component={EditOrphanage} />
       </Switch>
     </BrowserRouter>
   );
