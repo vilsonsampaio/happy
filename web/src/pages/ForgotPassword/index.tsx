@@ -15,8 +15,11 @@ const ForgotPassword: React.FC = () => {
   const { goBack } = useHistory();
 
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(false);
 
   function handleSubmit(event: FormEvent) {
+    setLoading(true);
+
     event.preventDefault();
 
     api
@@ -34,13 +37,14 @@ const ForgotPassword: React.FC = () => {
         if (error.response) {
           if (error.response.data.message === 'User not found') {
             toast.error('E-mail não encontrado!');
-            return;
+          } else {
+            console.error(error.response.data.message);
           }
-
-          toast.error(error.response.data.message);
         }
       })
     ;
+
+    setLoading(false);
   }
 
   return (
@@ -65,7 +69,12 @@ const ForgotPassword: React.FC = () => {
             required
           />
 
-          <Button type="submit" disabled={!email}>Enviar e-mail</Button>
+          <Button 
+            type="submit" 
+            disabled={!email || loading}
+          >
+            { loading ? 'Enviando...' : 'Enviar e-mail' }
+          </Button>
         </form>
       </FormContainer>
     </Container>
