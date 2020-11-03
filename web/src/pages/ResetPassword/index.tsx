@@ -19,6 +19,8 @@ const ResetPassword: React.FC = () => {
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
     const { search } = window.location;
 
@@ -41,6 +43,8 @@ const ResetPassword: React.FC = () => {
   }, []);
 
   function handleSubmit(event: FormEvent) {
+    setLoading(true);
+
     event.preventDefault();
 
     api
@@ -61,23 +65,18 @@ const ResetPassword: React.FC = () => {
         if (error.response) {
           if (error.response.data.message === 'User not found') {
             toast.error('Usuário não encontrado!');
-            return;
-          }
-
-          if (error.response.data.message === 'Token is expired') {
+          } else if (error.response.data.message === 'Token is expired') {
             toast.error('Token expirado!');
-            return;
-          }
-
-          if (error.response.data.message === 'Token is invalid') {
+          } else if (error.response.data.message === 'Token is invalid') {
             toast.error('Token inválido!');
-            return;
+          } else {
+            console.error(error.response.data.message);
           }
-
-          toast.error(error.response.data.message);
         }
       })
     ;
+
+    setLoading(false);
   }
 
   return (
@@ -117,9 +116,11 @@ const ResetPassword: React.FC = () => {
               !(id && token && password && confirm_password) 
                           ||
               !(password === confirm_password)
+                          ||
+              loading
             }
           >
-            Redefinir
+            { loading ? 'Redefinindo...' : 'Redefinir' }
           </Button>
         </form>
       </FormContainer>
