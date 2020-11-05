@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { FiArrowRight, FiPlus } from 'react-icons/fi';
 
@@ -31,7 +32,9 @@ const OrphanagesMap: React.FC = () => {
     <Container>
       <Sidebar>
         <header>
-          <MapMarker />
+          <Link to="/">
+            <MapMarker />
+          </Link>
 
           <h2>Escolha um orfanato no mapa</h2>
           <p>Muitas crianças estão esperando a sua visita :)</p>

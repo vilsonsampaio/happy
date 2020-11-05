@@ -20,7 +20,7 @@ export const Container = styled.aside`
 
     border-right: solid 0.1rem ${theme.colors.backgroundLineInWhite};
 
-    > svg {
+    > a > svg {
       width: 4.8rem;
       height: auto;
     }

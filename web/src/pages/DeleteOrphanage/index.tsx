@@ -51,7 +51,7 @@ const DeleteOrphanage: React.FC = () => {
     api
       .delete(`orphanages/${id}`)
       .then(response => {
-        console.log(response);
+        toast.success('Orfanato excluído com sucesso!');
       })
       .catch(error => {
         console.error(error);

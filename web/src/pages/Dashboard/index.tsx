@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { FiAlertCircle, FiArrowRight, FiEdit3, FiMapPin, FiPower, FiTrash } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { Map, Marker, TileLayer } from 'react-leaflet';
+import { FiAlertCircle, FiArrowRight, FiEdit3, FiMapPin, FiPower, FiTrash } from 'react-icons/fi';
 
 import { MapMarker, AlertCircleNotification, NoOrphanagesIcon } from '../../assets/images';
 
@@ -145,7 +146,9 @@ const Dashboard: React.FC = () => {
   return (
     <Container>
       <Siderbar>
-        <MapMarker />
+        <Link to="/">
+          <MapMarker />
+        </Link>
 
         <div>
           <SidebarButton 
