@@ -38,9 +38,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     api.defaults.headers.authorization = undefined;
 
-    history.push('/sign-in');
-
-    console.log('Saiu!');
+    history.push('/');
   }, [history]);
 
 
@@ -62,9 +60,7 @@ export const AuthProvider: React.FC = ({ children }) => {
         if (response.data.ok === true) {
           setAuthenticated(true);
         }
-
-        console.log('Login automático bem sucedido!');
-
+        
         history.push('/dashboard');
       })
       .catch(error => {
@@ -96,8 +92,6 @@ export const AuthProvider: React.FC = ({ children }) => {
 
       setAuthenticated(true);
       
-      console.log('Login bem sucedido!');
-
       history.push('/dashboard');
     } catch (error) {
       setAuthenticated(false);
