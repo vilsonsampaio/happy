@@ -1,4 +1,9 @@
 node_modules/
-uploads/
-src/database/database.sqlite
+yarn.lock
+
 .env
+
+uploads/
+!uploads/.gitkeep
+
+src/database/database.sqlite

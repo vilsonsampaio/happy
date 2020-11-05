@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -12,7 +10,7 @@ export default (request: Request, response: Response, next: NextFunction) => {
     const [, token] = authHeader.split(' '); //['bearer', 'token']
 
     try {
-      const payload = jwt.verify(token, process.env.JWT_SECRET || 'default');
+      const payload: any = jwt.verify(token, process.env.JWT_SECRET || 'default');
 
       request.userId = payload.userId;
 
