@@ -23,7 +23,7 @@ const Landing: React.FC = () => {
           <p>Visite orfanatos e mude o dia de muitas crianças.</p>
         </Main>
 
-        <SignIn to="/sign-in">
+        <SignIn to="/dashboard">
           Acesso restrito
         </SignIn>
 

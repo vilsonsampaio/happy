@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 
 import { MapMarker } from '../../assets/images';
@@ -11,7 +11,9 @@ const Sidebar: React.FC = () => {
 
   return (
     <Container>
-      <MapMarker />
+      <Link to="/">
+        <MapMarker />
+      </Link>
 
       <footer>
         <button type="button" onClick={goBack}>

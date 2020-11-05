@@ -4,6 +4,8 @@ import { toast } from 'react-toastify';
 
 import { DeleteIllustration } from '../../assets/images';
 
+import api from '../../services/api';
+
 import { Container, Wrapper, Content, BackToDashboard } from './styles';
 
 interface DeleteOrphanageParams {
@@ -16,6 +18,8 @@ const DeleteOrphanage: React.FC = () => {
 
   const [id, setId] = useState(0);
   const [name, setName] = useState('');
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const id = Number(params.id);
@@ -42,6 +46,27 @@ const DeleteOrphanage: React.FC = () => {
   }, [params, history]);
 
   function handleClick() {
+    setLoading(true);
+
+    api
+      .delete(`orphanages/${id}`)
+      .then(response => {
+        toast.success('Orfanato excluído com sucesso!');
+      })
+      .catch(error => {
+        console.error(error);
+
+        if (error.response) {
+          console.error(error.response.data.message);
+        }
+
+        toast.error('Ocorreu um erro ao deletar o orfanato');
+      })
+    ;
+    
+    setLoading(false);
+    
+    history.push('/dashboard');
   }
 
   return (
@@ -56,7 +81,7 @@ const DeleteOrphanage: React.FC = () => {
 
           <div>
             <BackToDashboard as="button" onClick={handleClick} type="button">
-              Excluir
+              { loading ? 'Excluindo...' : 'Excluir' }
             </BackToDashboard>
             
             <BackToDashboard to="/dashboard">

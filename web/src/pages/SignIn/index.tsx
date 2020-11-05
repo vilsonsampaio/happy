@@ -6,17 +6,27 @@ import HappyHero from '../../components/HappyHero';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
+import useAuth from '../../hooks/useAuth';
+
 import { Container, FormContainer, GoBack, RememberMeContainer } from './styles';
 
 const SignIn: React.FC = () => {
+  const { handleSignIn, loading } = useAuth();
+
   const { goBack } = useHistory();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [remember_me, setRememberMe] = useState(true);
+  const [remember_me, setRememberMe] = useState(false);
 
   function handleSubmit(event: FormEvent) {
     event.preventDefault();
+
+    handleSignIn({
+      email,
+      password,
+      remember_me
+    });
   }
 
   return (
@@ -62,7 +72,12 @@ const SignIn: React.FC = () => {
             <Link to="/forgot-password">Esqueci minha senha</Link>
           </RememberMeContainer>
 
-          <Button type="submit" disabled={!(email && password)}>Entrar</Button>
+          <Button 
+            type="submit" 
+            disabled={!(email && password) || loading}
+          >
+            { loading ? 'Entrando...' : 'Entrar' }
+          </Button>
         </form>
       </FormContainer>
     </Container>

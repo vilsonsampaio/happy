@@ -64,7 +64,7 @@ export const Sidebar = styled.aside`
     background: ${theme.colors.primaryGradient};
 
     > header {
-      > svg {
+      > a > svg {
         width: 6.4rem;
         height: auto;
       }

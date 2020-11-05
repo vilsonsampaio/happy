@@ -144,36 +144,43 @@ const EditOrphanage: React.FC = () => {
         })
       ;
     } else {
-      // Getting pending orphanage data.
-      // *Change it to axios get when authentication is done.
-      const orphanage: Orphanage = {
-        name: 'Criança feliz',
-        latitude: -12.7168259, 
-        longitude: -38.3282798,
-        about: 'Sobre o orfanato crinça feliz',
-        whatsapp: '(71) 9 8888-8888',
-        instructions: 'Venha conversar com uma criança',
-        opening_hours: 'Das 10h às 16h',
-        open_on_weekends: false,
-        images: [
-          { 
-            id: 325, 
-            url: 'http://192.168.100.69:3333/uploads/1603858464406-capa linkedin.png', 
-          },
-        ],
-      };
+      api
+        .get<Orphanage>(`orphanages-pending/${id}`)
+        .then(response => {
+          const { 
+            name,
+            latitude,
+            longitude,
+            whatsapp,
+            about,
+            instructions,
+            opening_hours,
+            open_on_weekends,
+            images
+          } = response.data;
 
-      setPosition({ latitude: orphanage.latitude, longitude: orphanage.longitude });
+          setPosition({ latitude, longitude });
 
-      setName(orphanage.name);
-      setWhatsapp(orphanage.whatsapp);
-      setAbout(orphanage.about);
+          setName(name);
+          setWhatsapp(whatsapp);
+          setAbout(about);
 
-      setInstructions(orphanage.instructions);
-      setOpeningHours(orphanage.opening_hours);
-      setOpenOnWeekends(orphanage.open_on_weekends);
+          setInstructions(instructions);
+          setOpeningHours(opening_hours);
+          setOpenOnWeekends(open_on_weekends);
 
-      setPreviewImages(orphanage.images.map(image => image.url));
+          setPreviewImages(images.map(image => image.url));
+        })
+        .catch(error => {
+          console.error(error);
+
+          toast.error('Ocorreu um erro ao buscar o orfanato!');
+
+          if (error.response) {
+            toast.error(error.response.data.message);
+          }
+        })
+      ;
     }
   }, [params.id, history]);
 
@@ -225,19 +232,19 @@ const EditOrphanage: React.FC = () => {
     data.append('about', about);
     data.append('whatsapp', whatsapp);
 
-    images.forEach((image) => {
-      data.append('images', image);
-    });
+    images.forEach(image => data.append('images', image));
+    previewImages.forEach(previewImage => data.append('preview_images', previewImage));
 
     data.append('instructions', instructions);
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
 
-    /*
     api
-      .post('orphanages', data)
+      .put(`orphanages/${id}`, data)
       .then(() => {
         toast.success('Orfanato atualizado com sucesso!');
+
+        history.push('/dashboard');
       })
       .catch((error) => {
         console.error(error);
@@ -245,7 +252,6 @@ const EditOrphanage: React.FC = () => {
         toast.error('Ocorreu um erro ao atualizar o orfanato.')
       })
     ;
-    */
 
     setLoading(false);
   }
@@ -290,7 +296,6 @@ const EditOrphanage: React.FC = () => {
               label="Nome"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              disabled={!name}
               required
             />
 
@@ -301,7 +306,6 @@ const EditOrphanage: React.FC = () => {
               maxLength={300}
               value={about}
               onChange={(e) => setAbout(e.target.value)}
-              disabled={!about}
               required
             />
 
@@ -310,7 +314,6 @@ const EditOrphanage: React.FC = () => {
               label="Número de Whatsapp"
               value={whatsapp}
               onChange={(e) => setWhatsapp(e.target.value)}
-              disabled={!whatsapp}
               required
             />
 
@@ -354,7 +357,6 @@ const EditOrphanage: React.FC = () => {
               label="Instruções"
               value={instructions}
               onChange={(e) => setInstructions(e.target.value)}
-              disabled={!instructions}
               required
             />
 
@@ -363,7 +365,6 @@ const EditOrphanage: React.FC = () => {
               label="Horário das visitas"
               value={opening_hours}
               onChange={(e) => setOpeningHours(e.target.value)}
-              disabled={!opening_hours}
               required
             />
 
@@ -400,7 +401,7 @@ const EditOrphanage: React.FC = () => {
                     name &&
                     about &&
                     whatsapp &&
-                    images.length &&
+                    previewImages.length &&
                     instructions &&
                     opening_hours
                   )
@@ -408,6 +409,7 @@ const EditOrphanage: React.FC = () => {
                   (loading && !id)
                 }
                 loading={loading}
+                onClick={handleSubmit}
               >
                 { loading ? 'Confirmando...' : 'Confirmar' }
               </Button>
@@ -419,14 +421,15 @@ const EditOrphanage: React.FC = () => {
                   onClick={() => history.push(`/orphanages/delete/${id}`)}
                 >
                   <FiXCircle />
-                  Recusar
+                  { loading ? 'Recusando...' : 'Recusar'}
                 </PendingButton>
 
                 <PendingButton
                   type="submit"
+                  onClick={handleSubmit}
                 >
                   <FiCheck />
-                  Aceitar
+                  { loading ? 'Aceitando...' : 'Aceitar'}
                 </PendingButton>
               </PendingButtonContainer>
             )

@@ -69,7 +69,7 @@ export const Siderbar = styled.aside`
 
     z-index: 999;
 
-    > svg {
+    > a > svg {
       width: 4.8rem;
       height: auto;
     }
