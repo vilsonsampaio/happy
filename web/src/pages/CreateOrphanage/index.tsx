@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { LeafletMouseEvent } from 'leaflet';
 import { Map, Marker, TileLayer } from 'react-leaflet';
@@ -29,6 +29,8 @@ import {
 const CreateOrphanage: React.FC = () => {
   const history = useHistory();
 
+  const [userPosition, setUserPosition] = useState<[number, number]>([0, 0]);
+
   const [position, setPosition] = useState({ latitude: 0, longitude: 0 });
 
   const [name, setName] = useState('');
@@ -43,6 +45,25 @@ const CreateOrphanage: React.FC = () => {
   const [previewImages, setPreviewImages] = useState<string[]>([]);
 
   const [loading, setLoading] = useState(false);
+
+  // Getting user location
+  useEffect(() => {
+    navigator
+      .geolocation
+      .getCurrentPosition(
+        (position) => {
+          const {  latitude, longitude } = position.coords;
+
+          setUserPosition([latitude, longitude]);
+        },
+        (error) => {
+          console.error(error);
+
+          toast.error('Não foi possível pegar a localização!');
+        }
+      )
+    ;
+  }, []);
 
   function handleMapClick(event: LeafletMouseEvent) {
     const { lat, lng } = event.latlng;
@@ -143,7 +164,7 @@ const CreateOrphanage: React.FC = () => {
 
             <MapContainer>
               <Map
-                center={[-12.7197249, -38.3271104]}
+                center={userPosition}
                 zoom={15}
                 onClick={handleMapClick}
               >

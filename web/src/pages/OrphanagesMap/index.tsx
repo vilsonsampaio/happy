@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Map, TileLayer, Marker, Popup } from 'react-leaflet';
 import { FiArrowRight, FiPlus } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 import { mapIcon } from '../../utils';
 
@@ -21,11 +22,36 @@ interface Orphanage {
 
 const OrphanagesMap: React.FC = () => {
   const [orphanages, setOrphanages] = useState<Orphanage[]>([]);
+  const [userPosition, setUserPosition] = useState<[number, number]>([0, 0]);
 
   useEffect(() => {
-    api.get('orphanages').then((response) => {
-      setOrphanages(response.data);
-    });
+    api
+      .get('orphanages')
+      .then((response) => {
+        setOrphanages(response.data);
+      })
+      .catch(error => {
+        console.error(error);
+
+        toast.error('Não foi possível pegar dados dos orfanatos.')
+      })
+    ;
+
+    navigator
+      .geolocation
+      .getCurrentPosition(
+        (position) => {
+          const {  latitude, longitude } = position.coords;
+
+          setUserPosition([latitude, longitude]);
+        },
+        (error) => {
+          console.error(error);
+
+          toast.error('Não foi possível pegar a localização!');
+        }
+      )
+    ;
   }, []);
 
   return (
@@ -47,7 +73,7 @@ const OrphanagesMap: React.FC = () => {
       </Sidebar>
 
       <Map
-        center={[-12.7197249, -38.3271104]}
+        center={userPosition}
         zoom={15}
         className="map-container"
       >
