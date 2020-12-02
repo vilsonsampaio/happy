@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img alt="Happy" title="Happy" src=".github/logo.svg" width="220px" />
+  <img alt="Happy" title="Happy" src=".github/logo.svg" width="220px" />
 </h1>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/vilsonsampaio/happy.svg?color=29B6D1">
@@ -16,10 +16,10 @@
 </p>
 
 <p align="center">
+  <a href="#-features">Features</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-projeto">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#-como-contribuir">Como contribuir</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-como-contribuir">Como contribuir</a>
 </p>
 
 <br>
@@ -28,6 +28,11 @@
   <img alt="Happy" src=".github/preview.png" width="100%">
 </p>
 
+## 📎 Features
+- [🛢 Back-end](./server)
+- [💻 Front-end](./web)
+- [📱 Mobile](./mobile)
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
@@ -35,20 +40,12 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://reactjs.org)
 - [React Native](https://facebook.github.io/react-native/)
-- [Expo](https://expo.io/)
 
 ## 💻 Projeto
 
 O Happy é uma aplicação que conecta pessoas à casas de acolhimento institucional (orfanatos) para fazer o dia de muitas crianças mais feliz.
 
 Essa aplicação foi construída na trilha <strong>OmniStack</strong> da <strong>Next Level Week #03</strong> distribuída pela [Rocketseat](https://rocketseat.com.br/). A ideia de criar uma aplicação voltada ao ensino surgiu da proximidade da data evento com o <strong>Dia das Crianças</strong>.
-
-## 🔖 Layout
-
-Nos links abaixo você encontra o layout do projeto web e também do mobile. Lembrando que você precisa ter uma conta no [Figma](http://figma.com/) para acessá-lo.
-
-- [Layout Web](https://www.figma.com/file/mDEbnoojksG4w8sOxmudh3/Happy-Web)
-- [Layout Mobile](https://www.figma.com/file/X27FfVxAgy9f5IFa7ONlph/Happy-Mobile)
 
 ## 🤔 Como contribuir
 
@@ -58,10 +55,6 @@ Nos links abaixo você encontra o layout do projeto web e também do mobile. Lem
 - Faça push para a sua branch: `git push origin minha-feature`.
 
 Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
-
-## :mortar_board: Quem ministrou?
-
-As aulas foram ministradas pelo mestre **[Diego Fernandes](https://github.com/diego3g)** na **Next Level Week #03**.
 
 
 ---
