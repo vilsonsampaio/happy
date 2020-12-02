@@ -118,7 +118,7 @@ export default {
         to: email,
         from: 'nao-responda@happy.com',
         subject: 'Recupere seu acesso - Happy',
-        html: `<p>Você esqueceu sua senha? Não tem problema, <a href='${process.env.NODEMAILER_FRONTEND_URL}?token=${token}&id=${user.id}'>clique aqui</a> para recuperar ou cole esse endereço em seu navegador <strong>${process.env.NODEMAILER_FRONTEND_URL}?token=${token}&id=${user.id}</strong></p>`,
+        html: `<p>Você esqueceu sua senha? Não tem problema, <a href='${process.env.FRONTEND_URL}reset-password/?token=${token}&id=${user.id}'>clique aqui</a> para recuperar ou cole esse endereço em seu navegador <strong>${process.env.FRONTEND_URL}reset-password/?token=${token}&id=${user.id}</strong></p>`,
       },
       (error) => {
         if (error) {
